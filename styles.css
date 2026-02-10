@@ -15,6 +15,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background: linear-gradient(rgb(218, 244, 255), rgb(255, 255, 255), rgb(218, 244, 255));
 }
 
 #container {
@@ -31,7 +32,7 @@ body {
 }
 
 #input {
-    width: 70%;
+    width: 90%;
     height: 15vh;
     border-radius: 25px;
     font-size: 2em;
@@ -40,8 +41,8 @@ body {
 }
 
 #buttons {
-    width: 70%;
-    height: 40vh;
+    width: 90%;
+    height: 45vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
