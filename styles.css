@@ -1,0 +1,66 @@
+*, ::before, ::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --light-grey: rgb(239, 233, 233);
+    --light-black: rgb(42, 38, 38);
+    --orange: rgb(215, 144, 10);
+    --darker-orange: rgb(161, 108, 8);
+    --black: rgb(0, 0, 0);
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5%;
+    width: 50%;
+    height: 70vh;
+    border: 1px solid var(--black);
+    border-radius: 35px;
+    background-color: var(--light-black);
+}
+
+#input {
+    width: 70%;
+    height: 15vh;
+    border-radius: 25px;
+    font-size: 2em;
+    background-color: var(--light-grey);
+    border: 3px solid var(--black);
+}
+
+#buttons {
+    width: 70%;
+    height: 40vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+button {
+    font-size: 2em;
+    font-weight: bold;
+    border: 5px solid var(--light-black);
+    background-color: var(--orange);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--darker-orange);
+}
+
+@media screen and (max-width: 640px) {
+    button {
+        font-size: 1em;
+    }
+}
