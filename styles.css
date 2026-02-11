@@ -7,6 +7,7 @@
     --light-black: rgb(42, 38, 38);
     --orange: rgb(215, 144, 10);
     --darker-orange: rgb(161, 108, 8);
+    --darkest-orange: rgb(119, 79, 6);
     --black: rgb(0, 0, 0);
 }
 
@@ -38,6 +39,7 @@ body {
     font-size: 2em;
     background-color: var(--light-grey);
     border: 3px solid var(--black);
+    text-align: right;
 }
 
 #buttons {
@@ -58,6 +60,10 @@ button {
 
 button:hover {
     background-color: var(--darker-orange);
+}
+
+button:active {
+    background-color: var(--darkest-orange);
 }
 
 @media screen and (max-width: 640px) {
