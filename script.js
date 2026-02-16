@@ -28,14 +28,25 @@ btns.forEach((btn) => {
         }
 
         if(btnText === "√") {
-            input.value = Math.sqrt(Number(input.value));
+            if(input.value !== "" && Number(input.value) >= 0) {
+                input.value = Math.sqrt(Number(input.value));
+            } else {
+                input.value = "No negative numbers";
+            }
             return;
         }
         
-        if(btnText === "+" || btnText === "-" || btnText === "×" || btnText === "/" || btnText === "%" || btnText === "=") {
+        if((/[-×\/%+]/.test(btnText)) || btnText === "=") {
             if(btnText === "=") {
                 if(arr.length >= 2 && input.value !== "") {
                     arr.push(input.value);
+
+                    if(arr[1] === "/" && Number(arr[2]) === 0) {
+                        input.value = "Division by zero is impossible";
+                        arr = [];
+                        return;
+                    }
+
                     if(arr[1] === "+") {
                         input.value = addition(arr);
                     } else if(arr[1] === "-") {
@@ -46,11 +57,11 @@ btns.forEach((btn) => {
                         input.value = division(arr);
                     }  else if(arr[1] === "%") {
                         input.value = reminder(arr);
-                    }
+                    }  
                     arr = [];   
                 }
             } else {
-                // Save operator
+                // Save-Operator
                 if(input.value !== "") {
                     arr = [input.value, btnText];
                     input.value = "";
