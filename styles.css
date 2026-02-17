@@ -24,7 +24,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 5%;
+    gap: 2%;
     width: 50%;
     height: 70vh;
     border: 1px solid var(--black);
@@ -33,26 +33,26 @@ body {
 }
 
 #input {
-    width: 90%;
-    height: 15vh;
+    width: 95%;
+    height: 17vh;
     border-radius: 25px;
-    font-size: 2em;
+    font-size: 1.9em;
     background-color: var(--light-grey);
     border: 3px solid var(--black);
     text-align: right;
 }
 
 #buttons {
-    width: 90%;
-    height: 45vh;
+    width: 95%;
+    height: 46vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 button {
-    font-size: 2em;
+    font-size: 2.4em;
     font-weight: bold;
-    border: 5px solid var(--light-black);
+    border: 3px solid var(--light-black);
     background-color: var(--orange);
     border-radius: 10px;
     cursor: pointer;
@@ -66,8 +66,21 @@ button:active {
     background-color: var(--darkest-orange);
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 600px) {
     button {
-        font-size: 1em;
+        font-size: 1.2em;
+    }
+    #input {
+        font-size: 1.7em;
+    }
+}
+
+@media screen and (orientation: landscape) {
+    button {
+        font-size: 1.4em;
+        border: 2px solid var(--light-black);
+    }
+    #input {
+        font-size: 1.5em;
     }
 }

@@ -10,9 +10,33 @@ const multiplication = (array) =>  Number(array[0]) * Number(array[2]);
 const division = (array) => Number(array[0]) / Number(array[2]);
 const reminder = (array) => Number(array[0]) % Number(array[2]);
 
+function setMaxLength() {
+    if(window.matchMedia("(max-width: 600px)").matches) {
+        if(input.value.length > 13) {
+            input.value = input.value.slice(0, 13);
+        }
+    } else if(window.matchMedia("(max-width: 700px)").matches) {
+        if(input.value.length > 15) {
+            input.value = input.value.slice(0, 15);
+        }
+    } else if(window.matchMedia("(max-width: 960px)").matches) {
+        if(input.value.length > 29) {
+            input.value = input.value.slice(0, 29);
+        }
+    } else {
+        if(input.value.length > 50) {
+            input.value = input.value.slice(0, 50);
+        }
+    }
+}
+
+window.addEventListener("resize", setMaxLength);
+
 btns.forEach((btn) => {
     btn.addEventListener("click", () => {
         const btnText = btn.innerText;
+
+        setMaxLength();
 
         // Clear-Button
         if(btnText === "C") {
