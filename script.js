@@ -92,12 +92,12 @@ btns.forEach((btn) => {
             return;
         }
         
-        if(btnText === "=") {
-            calculateResult();
-            return;
-        } else if(/[-×\/%+]/.test(btnText)) {
+        if(/[-×\/%+]/.test(btnText)) {
             // Save-Operator
             handleOperation(btnText);
+            return;
+        } else if(btnText === "=") {
+            calculateResult();
             return;
         }
         
