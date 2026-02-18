@@ -32,6 +32,38 @@ function setMaxLength() {
 
 window.addEventListener("resize", setMaxLength);
 
+const handleOperation = (btnText) => {
+    if(input.value !== "") {
+        arr = [input.value, btnText];
+        input.value = "";
+    }
+};
+
+const calculateResult = () => {
+    if(arr.length >= 2 && input.value !== "") {
+        arr.push(input.value);
+
+        if(arr[1] === "/" && Number(arr[2]) === 0) {
+            input.value = "Division by zero is impossible";
+            arr = [];
+            return;
+        }
+
+        if(arr[1] === "+") {
+            input.value = addition(arr);
+        } else if(arr[1] === "-") {
+            input.value = subtraction(arr);
+        }  else if(arr[1] === "×") {
+            input.value = multiplication(arr);
+        }  else if(arr[1] === "/") {
+            input.value = division(arr);
+        }  else if(arr[1] === "%") {
+            input.value = reminder(arr);
+        }  
+        arr = [];   
+    }
+};
+
 btns.forEach((btn) => {
     btn.addEventListener("click", () => {
         const btnText = btn.innerText;
@@ -60,39 +92,15 @@ btns.forEach((btn) => {
             return;
         }
         
-        if((/[-×\/%+]/.test(btnText)) || btnText === "=") {
-            if(btnText === "=") {
-                if(arr.length >= 2 && input.value !== "") {
-                    arr.push(input.value);
-
-                    if(arr[1] === "/" && Number(arr[2]) === 0) {
-                        input.value = "Division by zero is impossible";
-                        arr = [];
-                        return;
-                    }
-
-                    if(arr[1] === "+") {
-                        input.value = addition(arr);
-                    } else if(arr[1] === "-") {
-                        input.value = subtraction(arr);
-                    }  else if(arr[1] === "×") {
-                        input.value = multiplication(arr);
-                    }  else if(arr[1] === "/") {
-                        input.value = division(arr);
-                    }  else if(arr[1] === "%") {
-                        input.value = reminder(arr);
-                    }  
-                    arr = [];   
-                }
-            } else {
-                // Save-Operator
-                if(input.value !== "") {
-                    arr = [input.value, btnText];
-                    input.value = "";
-                }
-            }
+        if(btnText === "=") {
+            calculateResult();
+            return;
+        } else if(/[-×\/%+]/.test(btnText)) {
+            // Save-Operator
+            handleOperation(btnText);
             return;
         }
+        
         // Number-Buttons
         input.value += btnText;
     });
