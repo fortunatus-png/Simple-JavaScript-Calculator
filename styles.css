@@ -19,7 +19,7 @@ body {
     background: linear-gradient(rgb(218, 244, 255), rgb(255, 255, 255), rgb(218, 244, 255));
 }
 
-#container {
+#calculator {
     display: flex;
     justify-content: center;
     align-items: center;
