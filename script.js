@@ -2,8 +2,6 @@ const input = document.getElementById("input");
 const buttons = document.getElementById("buttons");
 const btns = buttons.querySelectorAll("button");
 
-let arr = [];
-
 const addition = (array) =>  Number(array[0]) + Number(array[2]);
 const subtraction = (array) => Number(array[0]) - Number(array[2]);
 const multiplication = (array) =>  Number(array[0]) * Number(array[2]);
@@ -32,38 +30,40 @@ function setMaxLength() {
 
 window.addEventListener("resize", setMaxLength);
 
-const handleOperation = (btnText) => {
-    if(input.value !== "") {
-        arr = [input.value, btnText];
-        input.value = "";
+const handleOperation = (btnText, input) => {
+    let array = [];
+    if(input !== "") {
+        array = [input, btnText];
     }
+    return array;
 };
 
-const calculateResult = () => {
-    if(arr.length >= 2 && input.value !== "") {
-        arr.push(input.value);
+const calculateResult = (arr, input) => {
+    if(arr.length >= 2 && input !== "") {
+        arr.push(input);
 
         if(arr[1] === "/" && Number(arr[2]) === 0) {
-            input.value = "Division by zero is impossible";
+            input = "Division by zero is impossible";
             arr = [];
             return;
         }
 
         if(arr[1] === "+") {
-            input.value = addition(arr);
+            input = addition(arr);
         } else if(arr[1] === "-") {
-            input.value = subtraction(arr);
+            input = subtraction(arr);
         }  else if(arr[1] === "×") {
-            input.value = multiplication(arr);
+            input = multiplication(arr);
         }  else if(arr[1] === "/") {
-            input.value = division(arr);
+            input = division(arr);
         }  else if(arr[1] === "%") {
-            input.value = reminder(arr);
+            input = reminder(arr);
         }  
-        arr = [];   
+        return input;  
     }
 };
 
+let arr = [];
 btns.forEach((btn) => {
     btn.addEventListener("click", () => {
         const btnText = btn.innerText;
@@ -75,33 +75,27 @@ btns.forEach((btn) => {
             input.value = "";
             arr = [];
             return;
-        }
-
-        // Delete char by char 
-        if(btnText === "⇐") {
+        } else if(btnText === "⇐") {
             input.value = input.value.slice(0, -1);
             return;
-        }
-
-        if(btnText === "√") {
+        } else if(btnText === "√") {
             if(input.value !== "" && Number(input.value) >= 0) {
                 input.value = Math.sqrt(Number(input.value));
             } else {
                 input.value = "No negative numbers";
             }
             return;
-        }
-        
-        if(/[-×\/%+]/.test(btnText)) {
+        }else if(/[-×\/%+]/.test(btnText)) {
             // Save-Operator
-            handleOperation(btnText);
+            arr = handleOperation(btnText, input.value);
+            input.value = "";
             return;
         } else if(btnText === "=") {
-            calculateResult();
+            input.value = calculateResult(arr, input.value);
+            arr = [];
             return;
+        }else {
+            input.value += btnText;
         }
-        
-        // Number-Buttons
-        input.value += btnText;
     });
 });
