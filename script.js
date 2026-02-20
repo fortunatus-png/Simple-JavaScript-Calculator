@@ -63,6 +63,24 @@ const calculateResult = (arr, input) => {
     }
 };
 
+const handleDelete = (input) => {
+    input = input.slice(0, -1);
+    return input;
+};
+
+const handleClear = (input) => {
+    return input = "";
+};
+
+const handleSqrt = (input) => {
+    if(input !== "" && Number(input) >= 0) {
+        input = Math.sqrt(Number(input));
+    } else {
+        input = "No negative numbers";
+    }
+    return input;
+};
+
 let arr = [];
 btns.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -72,20 +90,16 @@ btns.forEach((btn) => {
 
         // Clear-Button
         if(btnText === "C") {
-            input.value = "";
+            input.value = handleClear(input.value);
             arr = [];
             return;
         } else if(btnText === "⇐") {
-            input.value = input.value.slice(0, -1);
+            input.value = handleDelete(input.value);
             return;
         } else if(btnText === "√") {
-            if(input.value !== "" && Number(input.value) >= 0) {
-                input.value = Math.sqrt(Number(input.value));
-            } else {
-                input.value = "No negative numbers";
-            }
+            input.value = handleSqrt(input.value);
             return;
-        }else if(/[-×\/%+]/.test(btnText)) {
+        } else if(/[-×\/%+]/.test(btnText)) {
             // Save-Operator
             arr = handleOperation(btnText, input.value);
             input.value = "";
@@ -94,7 +108,7 @@ btns.forEach((btn) => {
             input.value = calculateResult(arr, input.value);
             arr = [];
             return;
-        }else {
+        } else {
             input.value += btnText;
         }
     });
