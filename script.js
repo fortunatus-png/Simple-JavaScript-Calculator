@@ -32,6 +32,25 @@ function setMaxLength() {
 
 window.addEventListener("resize", setMaxLength);
 
+const handleDelete = (input) => {
+    input = input.slice(0, -1);
+    return input;
+};
+
+const handleClear = (input) => {
+    return input = "";
+    //arr = [];
+};
+
+const handleSqrt = (input) => {
+    if(input !== "" && Number(input) >= 0) {
+        input = Math.sqrt(Number(input));
+    } else {
+        input = "No negative numbers";
+    }
+    return input;
+};
+
 btns.forEach((btn) => {
     btn.addEventListener("click", () => {
         const btnText = btn.innerText;
@@ -40,23 +59,19 @@ btns.forEach((btn) => {
 
         // Clear-Button
         if(btnText === "C") {
-            input.value = "";
+            input.value = handleClear(input.value);
             arr = [];
             return;
         }
 
         // Delete char by char 
         if(btnText === "⇐") {
-            input.value = input.value.slice(0, -1);
+            input.value = handleDelete(input.value);
             return;
         }
 
         if(btnText === "√") {
-            if(input.value !== "" && Number(input.value) >= 0) {
-                input.value = Math.sqrt(Number(input.value));
-            } else {
-                input.value = "No negative numbers";
-            }
+            input.value = handleSqrt(input.value);
             return;
         }
         
