@@ -2,8 +2,6 @@ const input = document.getElementById("input");
 const buttons = document.getElementById("buttons");
 const btns = buttons.querySelectorAll("button");
 
-let arr = [];
-
 const addition = (array) =>  Number(array[0]) + Number(array[2]);
 const subtraction = (array) => Number(array[0]) - Number(array[2]);
 const multiplication = (array) =>  Number(array[0]) * Number(array[2]);
@@ -32,6 +30,39 @@ function setMaxLength() {
 
 window.addEventListener("resize", setMaxLength);
 
+const handleOperation = (btnText, input) => {
+    let array = [];
+    if(input !== "") {
+        array = [input, btnText];
+    }
+    return array;
+};
+
+const calculateResult = (arr, input) => {
+    if(arr.length >= 2 && input !== "") {
+        arr.push(input);
+
+        if(arr[1] === "/" && Number(arr[2]) === 0) {
+            input = "Division by zero is impossible";
+            arr = [];
+            return;
+        }
+
+        if(arr[1] === "+") {
+            input = addition(arr);
+        } else if(arr[1] === "-") {
+            input = subtraction(arr);
+        }  else if(arr[1] === "×") {
+            input = multiplication(arr);
+        }  else if(arr[1] === "/") {
+            input = division(arr);
+        }  else if(arr[1] === "%") {
+            input = reminder(arr);
+        }  
+        return input;  
+    }
+};
+
 const handleDelete = (input) => {
     input = input.slice(0, -1);
     return input;
@@ -39,7 +70,6 @@ const handleDelete = (input) => {
 
 const handleClear = (input) => {
     return input = "";
-    //arr = [];
 };
 
 const handleSqrt = (input) => {
@@ -51,6 +81,7 @@ const handleSqrt = (input) => {
     return input;
 };
 
+let arr = [];
 btns.forEach((btn) => {
     btn.addEventListener("click", () => {
         const btnText = btn.innerText;
@@ -62,53 +93,23 @@ btns.forEach((btn) => {
             input.value = handleClear(input.value);
             arr = [];
             return;
-        }
-
-        // Delete char by char 
-        if(btnText === "⇐") {
+        } else if(btnText === "⇐") {
             input.value = handleDelete(input.value);
             return;
-        }
-
-        if(btnText === "√") {
+        } else if(btnText === "√") {
             input.value = handleSqrt(input.value);
             return;
-        }
-        
-        if((/[-×\/%+]/.test(btnText)) || btnText === "=") {
-            if(btnText === "=") {
-                if(arr.length >= 2 && input.value !== "") {
-                    arr.push(input.value);
-
-                    if(arr[1] === "/" && Number(arr[2]) === 0) {
-                        input.value = "Division by zero is impossible";
-                        arr = [];
-                        return;
-                    }
-
-                    if(arr[1] === "+") {
-                        input.value = addition(arr);
-                    } else if(arr[1] === "-") {
-                        input.value = subtraction(arr);
-                    }  else if(arr[1] === "×") {
-                        input.value = multiplication(arr);
-                    }  else if(arr[1] === "/") {
-                        input.value = division(arr);
-                    }  else if(arr[1] === "%") {
-                        input.value = reminder(arr);
-                    }  
-                    arr = [];   
-                }
-            } else {
-                // Save-Operator
-                if(input.value !== "") {
-                    arr = [input.value, btnText];
-                    input.value = "";
-                }
-            }
+        } else if(/[-×\/%+]/.test(btnText)) {
+            // Save-Operator
+            arr = handleOperation(btnText, input.value);
+            input.value = "";
             return;
+        } else if(btnText === "=") {
+            input.value = calculateResult(arr, input.value);
+            arr = [];
+            return;
+        } else {
+            input.value += btnText;
         }
-        // Number-Buttons
-        input.value += btnText;
     });
 });
