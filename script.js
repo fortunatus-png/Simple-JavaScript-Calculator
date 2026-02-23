@@ -52,7 +52,7 @@ const calculateResult = (arr, input) => {
             input = addition(arr);
         } else if(arr[1] === "-") {
             input = subtraction(arr);
-        }  else if(arr[1] === "×") {
+        }  else if(arr[1] === "*") {
             input = multiplication(arr);
         }  else if(arr[1] === "/") {
             input = division(arr);
@@ -99,7 +99,7 @@ btns.forEach((btn) => {
         } else if(btnText === "√") {
             input.value = handleSqrt(input.value);
             return;
-        } else if(/[-×\/%+]/.test(btnText)) {
+        } else if(/[-*\/%+]/.test(btnText)) {
             // Save-Operator
             arr = handleOperation(btnText, input.value);
             input.value = "";
@@ -112,4 +112,43 @@ btns.forEach((btn) => {
             input.value += btnText;
         }
     });
+});
+
+document.addEventListener("keydown", (e) => {
+    let key = e.key;
+  
+    if ("Shift" === e.key) return;
+
+    if(/^(-|\*|\/|%|\+|\d|Delete|Backspace|Enter|s|.)$/.test(key)) {
+        console.log(e.key)
+        e.preventDefault();
+        setMaxLength();
+
+        // Clear-Button
+        if(key === "Delete") {
+            input.value = handleClear(input.value);
+            arr = [];
+            return;
+        } else if(key === "Backspace") {
+            input.value = handleDelete(input.value);
+            return;
+        } else if(key === "s") {
+            input.value = handleSqrt(input.value);
+            return;
+        } else if(/[-*\/%+]/.test(key)) {
+            // Save-Operator
+            arr = handleOperation(key, input.value);
+            input.value = "";
+            return;
+        } else if(key === "Enter") {
+            input.value = calculateResult(arr, input.value);
+            arr = [];
+            return;
+        } else {
+            input.value += key;
+        }
+    } else {
+        alert("Please use only the calculator keys('√' is 's')");
+    }
+    
 });
