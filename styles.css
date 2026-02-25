@@ -36,7 +36,7 @@ body {
     width: 95%;
     height: 17vh;
     border-radius: 25px;
-    font-size: 1.9em;
+    font-size: 1.8em;
     background-color: var(--light-grey);
     border: 3px solid var(--black);
     text-align: right;
@@ -81,6 +81,6 @@ button:active {
         border: 2px solid var(--light-black);
     }
     #input {
-        font-size: 1.5em;
+        font-size: 1.3em;
     }
 }
