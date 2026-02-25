@@ -2,6 +2,8 @@ const input = document.getElementById("input");
 const buttons = document.getElementById("buttons");
 const btns = buttons.querySelectorAll("button");
 
+let result = "", operator = "";
+
 const addition = (res, input) =>  Number(res) + Number(input);
 const subtraction = (res, input) =>  Number(res) - Number(input);
 const multiplication = (res, input) =>  Number(res) * Number(input);
@@ -35,7 +37,7 @@ const calculateResult = (res, op, input) => {
         if(op === "/" && Number(input) === 0) {
             input = "Division by zero is impossible";
             res = "";
-            return;
+            return input;
         }
 
         if(op === "+") {
@@ -71,7 +73,6 @@ const handleSqrt = (input) => {
     return input;
 };
 
-let result = "", operator = "";
 btns.forEach((btn) => {
     btn.addEventListener("click", () => {
         const btnText = btn.innerText;
