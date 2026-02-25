@@ -6,4 +6,4 @@ This project was created to practise collaboration between web technologies.
 JavaScript focus:
 - Event listeners
 - Loops (forEach)
-- Simple functions and array operations
+- Simple functions
