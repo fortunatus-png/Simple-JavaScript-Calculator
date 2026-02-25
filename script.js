@@ -2,11 +2,11 @@ const input = document.getElementById("input");
 const buttons = document.getElementById("buttons");
 const btns = buttons.querySelectorAll("button");
 
-const addition = (array) =>  Number(array[0]) + Number(array[2]);
-const subtraction = (array) => Number(array[0]) - Number(array[2]);
-const multiplication = (array) =>  Number(array[0]) * Number(array[2]);
-const division = (array) => Number(array[0]) / Number(array[2]);
-const reminder = (array) => Number(array[0]) % Number(array[2]);
+const addition = (res, input) =>  Number(res) + Number(input);
+const subtraction = (res, input) =>  Number(res) - Number(input);
+const multiplication = (res, input) =>  Number(res) * Number(input);
+const division = (res, input) =>  Number(res) / Number(input);
+const reminder = (res, input) =>  Number(res) % Number(input);
 
 function setMaxLength() {
     if(window.matchMedia("(max-width: 600px)").matches) {
@@ -30,34 +30,24 @@ function setMaxLength() {
 
 window.addEventListener("resize", setMaxLength);
 
-const handleOperation = (btnText, input) => {
-    let array = [];
-    if(input !== "") {
-        array = [input, btnText];
-    }
-    return array;
-};
-
-const calculateResult = (arr, input) => {
-    if(arr.length >= 2 && input !== "") {
-        arr.push(input);
-
-        if(arr[1] === "/" && Number(arr[2]) === 0) {
+const calculateResult = (res, op, input) => {
+    if(res !== "" && input !== "") {
+        if(op === "/" && Number(input) === 0) {
             input = "Division by zero is impossible";
-            arr = [];
+            res = "";
             return;
         }
 
-        if(arr[1] === "+") {
-            input = addition(arr);
-        } else if(arr[1] === "-") {
-            input = subtraction(arr);
-        }  else if(arr[1] === "*") {
-            input = multiplication(arr);
-        }  else if(arr[1] === "/") {
-            input = division(arr);
-        }  else if(arr[1] === "%") {
-            input = reminder(arr);
+        if(op === "+") {
+            input = addition(res, input);
+        } else if(op === "-") {
+            input = subtraction(res, input);
+        }  else if(op === "*") {
+            input = multiplication(res, input);
+        }  else if(op === "/") {
+            input = division(res, input);
+        }  else if(op === "%") {
+            input = reminder(res, input);
         }  
         return input;  
     }
@@ -81,17 +71,15 @@ const handleSqrt = (input) => {
     return input;
 };
 
-let arr = [];
+let result = "", operator = "";
 btns.forEach((btn) => {
     btn.addEventListener("click", () => {
         const btnText = btn.innerText;
-
         setMaxLength();
 
         // Clear-Button
         if(btnText === "C") {
             input.value = handleClear(input.value);
-            arr = [];
             return;
         } else if(btnText === "⇐") {
             input.value = handleDelete(input.value);
@@ -101,12 +89,13 @@ btns.forEach((btn) => {
             return;
         } else if(/[-*\/%+]/.test(btnText)) {
             // Save-Operator
-            arr = handleOperation(btnText, input.value);
+            result = input.value;
+            operator = btnText;
             input.value = "";
             return;
         } else if(btnText === "=") {
-            input.value = calculateResult(arr, input.value);
-            arr = [];
+            input.value = calculateResult(result, operator, input.value);
+            result = "";
             return;
         } else {
             input.value += btnText;
@@ -116,18 +105,15 @@ btns.forEach((btn) => {
 
 document.addEventListener("keydown", (e) => {
     let key = e.key;
-  
     if ("Shift" === e.key) return;
 
     if(/^(-|\*|\/|%|\+|\d|Delete|Backspace|Enter|s|.)$/.test(key)) {
-        console.log(e.key)
         e.preventDefault();
         setMaxLength();
 
         // Clear-Button
         if(key === "Delete") {
             input.value = handleClear(input.value);
-            arr = [];
             return;
         } else if(key === "Backspace") {
             input.value = handleDelete(input.value);
@@ -137,18 +123,18 @@ document.addEventListener("keydown", (e) => {
             return;
         } else if(/[-*\/%+]/.test(key)) {
             // Save-Operator
-            arr = handleOperation(key, input.value);
+            result = input.value;
+            operator = key;
             input.value = "";
             return;
         } else if(key === "Enter") {
-            input.value = calculateResult(arr, input.value);
-            arr = [];
+            input.value = calculateResult(result, operator, input.value);
+            result = "";
             return;
         } else {
             input.value += key;
         }
     } else {
         alert("Please use only the calculator keys('√' is 's')");
-    }
-    
+    } 
 });
