@@ -2,7 +2,7 @@
 
 A simple web-based calculator built with **HTML, CSS, and JavaScript**.
 
-<img src="./images/calculator.png" width="600" height ="400" alt="Calculator screenshot">
+<img src="./images/calculator.png" width="600" height ="800" alt="Calculator screenshot">
 
 ### Features
 - Basic arithmetic operations: `+`, `-`, `*`, `/`, `%`
