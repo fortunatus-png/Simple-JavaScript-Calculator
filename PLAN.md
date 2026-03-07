@@ -11,7 +11,7 @@
  
 
 ## Mockup
-<img src="./images/mockup.jpg" width="800" alt="Calculator mockup">
+<img src="./images/mockup.jpg" width="400" height="600" alt="Calculator mockup">
 
 ## Procedure
 
