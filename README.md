@@ -2,6 +2,8 @@
 
 A simple web-based calculator built with **HTML, CSS, and JavaScript**.
 
+<img src="./images/calculator.png" width="800" alt="Calculator screenshot">
+
 ### Features
 - Basic arithmetic operations: `+`, `-`, `*`, `/`, `%`
 - Square root calculation

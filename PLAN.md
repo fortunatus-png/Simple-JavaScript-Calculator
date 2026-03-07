@@ -8,10 +8,10 @@
 | 10.02     | Layout done                  |
 | 11-13.02  | Implement JS logik           |
 | 14.02     | Finalize project             |
-|           |                              |  
+ 
 
 ## Mockup
-![Calculator mockup](mockup.jpg)
+<img src="./images/mockup.jpg" width="800" alt="Calculator mockup">
 
 ## Procedure
 
