@@ -19,13 +19,13 @@ This plan shows the `intended approach` before starting coding.
 ### 09-10.02.2026
 1. Create initial plan
 2. Send plan to mentor & wait for feedback
-1. Initialize repository
-2. Build layout & push
+3. Initialize repository
+4. Build layout & push
 
 ### 11-13.02.2026
 1. Implement operator & operand functions
 2. Implement delete character function
-2. Implement clear input function
+3. Implement clear input function
 
 ## Issues / Tasks
 
