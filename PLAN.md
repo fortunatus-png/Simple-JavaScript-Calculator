@@ -1,13 +1,14 @@
 # Calculator 09-14.02.2026
+This plan shows the `intended approach` before starting coding.
 
 ## Overview
 
 | `Date`    | `Todos`                      |
-| --------- | -----                        |
-| 09.02     | Start wie layout (HTML, CSS) |
-| 10.02     | Layout done                  |
-| 11-13.02  | Implement JS logik           |
-| 14.02     | Finalize project             |
+| --------- | ----------------------       |
+| 09.02     | Project started              |
+| 10.02     | Layout implemented           |
+| 11-13.02  | JS logic implemented         |
+| 14.02     | Project finalized            |
  
 
 ## Mockup
@@ -18,13 +19,13 @@
 ### 09-10.02.2026
 1. Create initial plan
 2. Send plan to mentor & wait for feedback
-3. Initialize repository
-4. Build layout & push
+1. Initialize repository
+2. Build layout & push
 
 ### 11-13.02.2026
 1. Implement operator & operand functions
 2. Implement delete character function
-3. Implement clear input function
+2. Implement clear input function
 
 ## Issues / Tasks
 
@@ -37,6 +38,3 @@
 - [Input validation](https://github.com/fortunatus-png/Simple-JavaScript-Calculator/issues/8)
 - [Basic arithmetic operations](https://github.com/fortunatus-png/Simple-JavaScript-Calculator/issues/6)
 - [Advanced features](https://github.com/fortunatus-png/Simple-JavaScript-Calculator/issues/7)
-
-## Comment
-This plan shows the `intended approach` before starting coding.
