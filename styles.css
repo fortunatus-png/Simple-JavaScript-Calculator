@@ -9,6 +9,8 @@
     --darker-orange: rgb(161, 108, 8);
     --darkest-orange: rgb(119, 79, 6);
     --black: rgb(0, 0, 0);
+    --white: rgb(255, 255, 255);
+    --light-blue: rgb(218, 244, 255);
 }
 
 body {
@@ -16,7 +18,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(rgb(218, 244, 255), rgb(255, 255, 255), rgb(218, 244, 255));
+    background: linear-gradient(var(--light-blue), var(--white), var(--light-blue));
 }
 
 #calculator {
@@ -24,7 +26,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 2%;
+    gap: 1%;
     width: 50%;
     height: 70vh;
     border: 1px solid var(--black);
@@ -34,23 +36,23 @@ body {
 
 #input {
     width: 95%;
-    height: 17vh;
+    height: 15vh;
     border-radius: 25px;
-    font-size: 1.8em;
+    font-size: 1.5em;
     background-color: var(--light-grey);
-    border: 3px solid var(--black);
+    border: 2px solid var(--black);
     text-align: right;
 }
 
 #buttons {
     width: 95%;
-    height: 46vh;
+    height: 51vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 button {
-    font-size: 2.4em;
+    font-size: 2.2em;
     font-weight: bold;
     border: 3px solid var(--light-black);
     background-color: var(--orange);
@@ -81,6 +83,6 @@ button:active {
         border: 2px solid var(--light-black);
     }
     #input {
-        font-size: 2.5em;
+        font-size: 2.3em;
     }
 }
