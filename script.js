@@ -2,7 +2,7 @@ const input = document.getElementById("input");
 const buttons = document.getElementById("buttons");
 const btns = buttons.querySelectorAll("button");
 
-let result = "", operator = "";
+let result = "", operator = "", info = "";
 
 const addition = (res, input) =>  Number(res) + Number(input);
 const subtraction = (res, input) =>  Number(res) - Number(input);
@@ -11,21 +11,23 @@ const division = (res, input) =>  Number(res) / Number(input);
 const reminder = (res, input) =>  Number(res) % Number(input);
 
 function setMaxLength() {
-    if(window.matchMedia("(max-width: 600px)").matches) {
-        if(input.value.length > 13) {
-            input.value = input.value.slice(0, 13);
-        }
-    } else if(window.matchMedia("(max-width: 700px)").matches) {
-        if(input.value.length > 15) {
-            input.value = input.value.slice(0, 15);
-        }
-    } else if(window.matchMedia("(max-width: 960px)").matches) {
-        if(input.value.length > 29) {
-            input.value = input.value.slice(0, 29);
-        }
-    } else {
-        if(input.value.length > 50) {
-            input.value = input.value.slice(0, 50);
+    if(!isNaN(input.value)) {
+        if(window.matchMedia("(max-width: 600px)").matches) {
+            if(input.value.length > 13) {
+                input.value = input.value.slice(0, 13);
+            }
+        } else if(window.matchMedia("(max-width: 700px)").matches) {
+            if(input.value.length > 15) {
+                input.value = input.value.slice(0, 15);
+            }
+        } else if(window.matchMedia("(max-width: 960px)").matches) {
+            if(input.value.length > 29) {
+                input.value = input.value.slice(0, 29);
+            }
+        } else {
+            if(input.value.length > 50) {
+                input.value = input.value.slice(0, 50);
+            }
         }
     }
 }
@@ -35,7 +37,8 @@ window.addEventListener("resize", setMaxLength);
 const calculateResult = (res, op, input) => {
     if(res !== "" && input !== "") {
         if(op === "/" && Number(input) === 0) {
-            input = "Division by zero is impossible";
+            info = "No division by zero";
+            input = info;
             res = "";
             return input;
         }
@@ -68,7 +71,8 @@ const handleSqrt = (input) => {
     if(input !== "" && Number(input) >= 0) {
         input = Math.sqrt(Number(input));
     } else {
-        input = "No negative numbers";
+        info = "No negative numbers";
+        input = info;
     }
     return input;
 };
@@ -78,7 +82,6 @@ btns.forEach((btn) => {
         const btnText = btn.innerText;
         setMaxLength();
 
-        // Clear-Button
         if(btnText === "C") {
             input.value = handleClear(input.value);
             return;
@@ -99,6 +102,10 @@ btns.forEach((btn) => {
             result = "";
             return;
         } else {
+            if(input.value === info) {
+                input.value = "";
+            }
+            if(btnText === "." && input.value.includes(".")) return;
             input.value += btnText;
         }
     });
@@ -133,6 +140,10 @@ document.addEventListener("keydown", (e) => {
             result = "";
             return;
         } else {
+            if(input.value === info) {
+                input.value = "";
+            }
+            if(key === "." && input.value.includes(".")) return;
             input.value += key;
         }
     } else {
