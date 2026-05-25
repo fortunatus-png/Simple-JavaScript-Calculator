@@ -2,6 +2,10 @@
 
 A simple web-based calculator built with **HTML, CSS, and JavaScript**.
 
+> **Human-Written Code**  
+> This project was independently developed, using AI only as tool for troubleshooting and learning.  
+> Hence this project demonstrates the acquired basic programming skills and an authentic learning progress.
+
 <img src="./images/calculator.png" width="400" height ="600" alt="Calculator screenshot">
 
 ### Features
